@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Finch
 
 finches = [
   {'name': 'Red', 'breed': 'Red Crossbill', 'description': 'red feathers with dark brown wings', 'age': 3},
@@ -16,6 +17,11 @@ def about(request):
 
 def finches_index(request):
   # We pass data to a template very much like we did in Express!
+  finches = Finch.objects.all()
   return render(request, 'finches/index.html', {
     'finches': finches
   })
+
+def finches_detail(request, finch_id):
+  finch = Finch.objects.get(id=finch_id)
+  return render(request, 'finches/detail.html', { 'finch': finch })
