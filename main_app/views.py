@@ -34,7 +34,6 @@ class FinchCreate(CreateView):
 
 class FinchUpdate(UpdateView):
   model = Finch
-  # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['breed', 'description', 'age']
 
 class FinchDelete(DeleteView):
