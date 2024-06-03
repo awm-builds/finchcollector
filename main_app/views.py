@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Finch
 
 finches = [
@@ -31,3 +31,12 @@ class FinchCreate(CreateView):
   model = Finch
   fields = '__all__'
   success_url = '/finches/{id}'
+
+class FinchUpdate(UpdateView):
+  model = Finch
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = ['breed', 'description', 'age']
+
+class FinchDelete(DeleteView):
+  model = Finch
+  success_url = '/finches'
