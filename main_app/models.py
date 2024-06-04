@@ -23,7 +23,7 @@ class Finch(models.Model):
 
 
 class Feeding(models.Model):
-    date = models.DateField()
+    date = models.DateField('feeding date')
     meal = models.CharField(
         max_length=1,
         choices=MEALS,
@@ -35,3 +35,5 @@ class Feeding(models.Model):
         # Nice method for obtaining the friendly value of a Field.choice
         return f"{self.get_meal_display()} on {self.date}"
 
+    class Meta:
+        ordering = ['-date']
